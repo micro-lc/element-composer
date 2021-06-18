@@ -1,0 +1,90 @@
+{
+  "name": "@mia-platform/fe-website",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.3",
+    "@types/tinycolor2": "^1.4.2",
+    "antd": "^4.14.0",
+    "axios": "^0.21.1",
+    "classnames": "^2.2.6",
+    "history": "^4.10.1",
+    "nock": "^13.0.11",
+    "qiankun": "^2.4.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-error-boundary": "^3.1.1",
+    "react-intl": "^5.13.3",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.3",
+    "rxjs": "^6.6.6",
+    "values.js": "^2.0.0"
+  },
+  "scripts": {
+    "lint": "eslint src --ext .js,.ts,.tsx",
+    "start": "rescripts start",
+    "build": "NODE_ENV=production INLINE_RUNTIME_CHUNK=false rescripts build",
+    "test": "rescripts test",
+    "coverage": "yarn test --coverage --watchAll=false --collectCoverageFrom=src/**/*.{ts,tsx} --collectCoverageFrom=!src/index.tsx --collectCoverageFrom=!src/react-app-env*.ts",
+    "dev:unit-watch": "yarn test",
+    "dev": "npm-run-all -p dev:** start",
+    "update-docker-version": "sed -i.bck \\\\\\\"s|version=\\\\\\\\\\\\\\\"[0-9]*\\\\\\\\.[0-9]*\\\\\\\\.[0-9]*.*\\\\\\\\\\\\\\\"|version=\\\\\\\\\\\\\\\"${npm_package_version}\\\\\\\\\\\\\\\"|\\\\\\\" Dockerfile",
+    "version": "npm run update-docker-version && rm -fr Dockerfile.bck && git add Dockerfile",
+    "analyze": "npm run build -- --stats && npx webpack-bundle-analyzer ./build/bundle-stats.json"
+  },
+  "proxy": "http://localhost:3456",
+  "standard-version": {
+    "skip": {
+      "bump": true,
+      "tag": true
+    }
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/register": "^7.13.8",
+    "@mia-platform/core": "0.1.0",
+    "@mia-platform/microlc-ui-components": "0.1.0",
+    "@rescripts/cli": "^0.0.16",
+    "@staticdeploy/mock-server": "^2.0.0",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/react-hooks": "^5.1.0",
+    "@testing-library/user-event": "~13.0.1",
+    "@types/classnames": "^2.2.11",
+    "@types/jest": "^26.0.22",
+    "@types/node": "^12.0.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@types/react-gtm-module": "^2.0.0",
+    "@types/react-router-dom": "^5.1.7",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-config-standard-react": "^11.0.1",
+    "eslint-plugin-flowtype": "^5.4.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "npm-run-all": "^4.1.5",
+    "react-gtm-module": "^2.0.11",
+    "standard-version": "^9.1.1",
+    "typescript": "^4.2.3"
+  },
+  "license": "SEE LICENSE IN LICENSE"
+}
