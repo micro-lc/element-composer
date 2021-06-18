@@ -2383,15 +2383,6 @@
     make-promises-safe "^5.1.0"
     prom-client "^12.0.0"
 
-"@mia-platform/microlc-ui-components@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@mia-platform/microlc-ui-components/-/microlc-ui-components-0.1.0.tgz#24c2822a041b82464a99fc3ba9f8f82ab26449d0"
-  integrity sha512-lTe2pp9rFXMKEOt/+7DDMLr6kYF1cVGQhTL3FR2v29z+gGK/T847KTofXgkzaoTvAoCdMYVnfy8f7vunBDqx2g==
-  dependencies:
-    react "^17.0.1"
-    react-dom "^17.0.1"
-    react-scripts "4.0.3"
-
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
