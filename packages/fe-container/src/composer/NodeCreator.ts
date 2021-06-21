@@ -35,6 +35,7 @@ const createColumn: CreateFunction = createDiv(columnStyle)
 const importScript = (configuration: Configuration) => {
   const scriptElement = document.createElement('script')
   scriptElement.setAttribute('src', configuration.url || '')
+  scriptElement.setAttribute('type', 'module')
   document.appendChild(scriptElement)
 }
 

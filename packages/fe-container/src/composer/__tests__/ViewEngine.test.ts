@@ -75,6 +75,9 @@ describe('ViewEngine tests', () => {
       '</div>' +
       '</div>')
     expect(document.appendChild).toHaveBeenCalledTimes(1)
+    const createdScript = document.appendChild.mock.calls[0][0].outerHTML
+    expect(createdScript).toMatch('google.it')
+    expect(createdScript).toMatch('type="module"')
   })
 
   it('create correctly an element inside a styled column inside a row', () => {
@@ -104,5 +107,8 @@ describe('ViewEngine tests', () => {
       '</div>' +
       '</div>')
     expect(document.appendChild).toHaveBeenCalledTimes(1)
+    const createdScript = document.appendChild.mock.calls[0][0].outerHTML
+    expect(createdScript).toMatch('google.it')
+    expect(createdScript).toMatch('type="module"')
   })
 })
