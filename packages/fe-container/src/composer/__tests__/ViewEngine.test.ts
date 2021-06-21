@@ -66,11 +66,11 @@ describe('ViewEngine tests', () => {
       }]
     }
     document.appendChild = jest.fn()
-    const viewBuilt = viewEngine([rowConfig])
+    const viewBuilt = viewEngine([rowConfig], {})
     expect(viewBuilt.outerHTML).toBe('<div>' +
       '<div style="display: &quot;flex&quot;; flex-direction: &quot;column&quot;">' +
       '<div style="display: &quot;flex&quot;; flex-direction: &quot;row&quot;">' +
-      '<button attribute-a="value-a"></button>' +
+      '<button attribute-a="value-a" event-bus="[object Object]"></button>' +
       '</div>' +
       '</div>' +
       '</div>')
