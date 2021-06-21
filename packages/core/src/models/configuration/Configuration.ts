@@ -37,8 +37,12 @@ const configurationSchema = {
     },
     config: {
       type: 'object',
-      description: 'Attribute configuration through attributes',
+      description: 'Attribute configuration for the custom element',
       additionalProperties: true,
+    },
+    style: {
+      type: 'string',
+      description: 'CSS style to inject to the DOM element',
     },
   },
   additionalProperties: false,
