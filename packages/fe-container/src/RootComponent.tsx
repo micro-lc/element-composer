@@ -16,6 +16,7 @@
 import React, {useEffect, useRef} from 'react'
 import {IntlProvider} from 'react-intl'
 import {BrowserRouter} from 'react-router-dom'
+import {Configuration} from '@mia-platform/core'
 
 import viewEngine from './composer/ViewEngine'
 import messages from './strings'
@@ -23,13 +24,15 @@ import messages from './strings'
 const navigatorLanguage = navigator.language.substring(0, 2)
 const language = messages[navigatorLanguage] ? navigatorLanguage : 'en'
 
-const RootComponent = () => {
+const RootComponent: React.FC<Configuration> = (configuration) => {
   const rootComponent = useRef<any>()
 
   useEffect(() => {
-    const components = viewEngine([])
-    rootComponent.current.parentElement.appendChild(components)
-  }, [])
+    if (configuration.type) {
+      const components = viewEngine([configuration])
+      rootComponent.current.parentElement.appendChild(components)
+    }
+  }, [configuration])
 
   return (
     <IntlProvider locale={language} messages={messages[language]}>

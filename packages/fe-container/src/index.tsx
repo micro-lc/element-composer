@@ -25,7 +25,7 @@ function retrieveContainer (props: any) {
 }
 
 function render (props: any) {
-  ReactDOM.render(<RootComponent/>, retrieveContainer(props))
+  ReactDOM.render(<RootComponent {...props.elementsConfiguration}/>, retrieveContainer(props))
 }
 
 export async function mount (props: any) {
