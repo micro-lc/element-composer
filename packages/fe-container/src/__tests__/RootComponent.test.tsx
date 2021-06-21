@@ -14,9 +14,19 @@
  * limitations under the License.
  */
 import React from 'react'
+import {render} from '@testing-library/react'
 
-const App: React.FC = () => {
-  return <></>
-}
+import RootComponent from '../RootComponent'
 
-export default App
+describe('RootComponent tests', () => {
+  it('is not broken with empty configuration', () => {
+    // @ts-ignore
+    const {asFragment} = render(<RootComponent />)
+    expect(asFragment()).toMatchSnapshot()
+  })
+
+  it('render a row', () => {
+    const {asFragment} = render(<RootComponent type={'row'} />)
+    expect(asFragment()).toMatchSnapshot()
+  })
+})

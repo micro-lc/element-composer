@@ -14,33 +14,10 @@
  * limitations under the License.
  */
 import './public-path'
-import React, {useEffect, useRef} from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
-import {BrowserRouter} from 'react-router-dom'
-import {IntlProvider} from 'react-intl'
 
-import messages from './strings'
-import viewEngine from './composer/ViewEngine'
-
-const navigatorLanguage = navigator.language.substring(0, 2)
-const language = messages[navigatorLanguage] ? navigatorLanguage : 'en'
-
-const RootComponent = () => {
-  const rootComponent = useRef<any>()
-
-  useEffect(() => {
-    const components = viewEngine([])
-    rootComponent.current.parentElement.appendChild(components)
-  }, [])
-
-  return (
-    <IntlProvider locale={language} messages={messages[language]}>
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
-        <div ref={rootComponent}/>
-      </BrowserRouter>
-    </IntlProvider>
-  )
-}
+import RootComponent from './RootComponent'
 
 function retrieveContainer (props: any) {
   const {container} = props
@@ -48,7 +25,7 @@ function retrieveContainer (props: any) {
 }
 
 function render (props: any) {
-  ReactDOM.render(<RootComponent/>, retrieveContainer(props))
+  ReactDOM.render(<RootComponent {...props.elementsConfiguration}/>, retrieveContainer(props))
 }
 
 export async function mount (props: any) {
