@@ -21,7 +21,7 @@ describe('ViewEngine tests', () => {
     const rowConfig = {type}
     const viewBuilt = viewEngine([rowConfig])
     expect(viewBuilt.outerHTML).toBe('<div>' +
-      '<div style="display: &quot;flex&quot;; flex-direction: &quot;column&quot;;">' +
+      '<div style="display: flex; flex-direction: column; ">' +
       '</div>' +
       '</div>')
   })
@@ -31,7 +31,7 @@ describe('ViewEngine tests', () => {
     const rowConfig = {type}
     const viewBuilt = viewEngine([rowConfig])
     expect(viewBuilt.outerHTML).toBe('<div>' +
-      '<div style="display: &quot;flex&quot;; flex-direction: &quot;row&quot;;">' +
+      '<div style="display: flex; flex-direction: row; ">' +
       '</div>' +
       '</div>')
   })
@@ -42,8 +42,8 @@ describe('ViewEngine tests', () => {
     const rowConfig = {type: row, content: [{type: column}]}
     const viewBuilt = viewEngine([rowConfig])
     expect(viewBuilt.outerHTML).toBe('<div>' +
-      '<div style="display: &quot;flex&quot;; flex-direction: &quot;column&quot;;">' +
-      '<div style="display: &quot;flex&quot;; flex-direction: &quot;row&quot;;">' +
+      '<div style="display: flex; flex-direction: column; ">' +
+      '<div style="display: flex; flex-direction: row; ">' +
       '</div>' +
       '</div>' +
       '</div>')
@@ -68,8 +68,37 @@ describe('ViewEngine tests', () => {
     document.appendChild = jest.fn()
     const viewBuilt = viewEngine([rowConfig], {})
     expect(viewBuilt.outerHTML).toBe('<div>' +
-      '<div style="display: &quot;flex&quot;; flex-direction: &quot;column&quot;;">' +
-      '<div style="display: &quot;flex&quot;; flex-direction: &quot;row&quot;;">' +
+      '<div style="display: flex; flex-direction: column; ">' +
+      '<div style="display: flex; flex-direction: row; ">' +
+      '<button attribute-a="value-a" event-bus="[object Object]"></button>' +
+      '</div>' +
+      '</div>' +
+      '</div>')
+    expect(document.appendChild).toHaveBeenCalledTimes(1)
+  })
+
+  it('create correctly an element inside a styled column inside a row', () => {
+    const column: 'column' = 'column'
+    const row: 'row' = 'row'
+    const element: 'element' = 'element'
+    const rowConfig = {
+      type: row,
+      content: [{
+        type: column,
+        style: 'width: 89%',
+        content: [{
+          type: element,
+          tag: 'button',
+          url: 'https://google.it',
+          config: {'attribute-a': 'value-a'}
+        }]
+      }]
+    }
+    document.appendChild = jest.fn()
+    const viewBuilt = viewEngine([rowConfig], {})
+    expect(viewBuilt.outerHTML).toBe('<div>' +
+      '<div style="display: flex; flex-direction: column; ">' +
+      '<div style="display: flex; flex-direction: row; width: 89%">' +
       '<button attribute-a="value-a" event-bus="[object Object]"></button>' +
       '</div>' +
       '</div>' +

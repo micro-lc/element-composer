@@ -16,15 +16,15 @@
 import {Configuration} from '@mia-platform/core'
 import {ReplaySubject} from 'rxjs'
 
-const rowStyle = 'display: "flex"; flex-direction: "column"'
-const columnStyle = 'display: "flex"; flex-direction: "row"'
+const rowStyle = 'display: flex; flex-direction: column'
+const columnStyle = 'display: flex; flex-direction: row'
 
 type CreateFunction = (configuration: Configuration) => HTMLDivElement
 type CreateInitialFunction = (initialStyle: string) => CreateFunction
 
 const createDiv: CreateInitialFunction = (initialStyle: string) => (configuration: Configuration) => {
   const divElement = document.createElement('div')
-  divElement.setAttribute('style', `${initialStyle};${configuration.style || ''}`)
+  divElement.setAttribute('style', `${initialStyle}; ${configuration.style || ''}`)
   return divElement
 }
 

@@ -11,7 +11,7 @@ exports[`RootComponent tests render a row 1`] = `
   <div />
   <div>
     <div
-      style="display: \\"flex\\"; flex-direction: \\"column\\";"
+      style="display: flex; flex-direction: column; "
     />
   </div>
 </DocumentFragment>
