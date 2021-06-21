@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 import {Configuration} from '@mia-platform/core'
+import {ReplaySubject} from 'rxjs'
 
 const rowStyle = 'display: "flex"; flex-direction: "column"'
 const columnStyle = 'display: "flex"; flex-direction: "row"'
@@ -42,17 +43,19 @@ const enrichElementProps = (element: HTMLElement) => ([key, value]: string[]) =>
   element.setAttribute(key, value)
 }
 
-const createEnrichedElement = (configuration: Configuration) => {
+const createEnrichedElement = (configuration: Configuration, eventBus: ReplaySubject<any>) => {
   // @ts-ignore
   const element = document.createElement(configuration.tag)
   const enricher: any = enrichElementProps(element)
   Object.entries(configuration.config || {}).forEach(enricher)
+  // @ts-ignore
+  element.setAttribute('event-bus', eventBus)
   return element
 }
 
-const createElement = (configuration: Configuration) => {
+const createElement = (configuration: Configuration, eventBus: ReplaySubject<any>) => {
   importScript(configuration)
-  return createEnrichedElement(configuration)
+  return createEnrichedElement(configuration, eventBus)
 }
 
 const strategies = {
@@ -61,9 +64,9 @@ const strategies = {
   element: createElement
 }
 
-const createNode = (configuration: Configuration) => {
+const createNode = (configuration: Configuration, eventBus: ReplaySubject<any>) => {
   const strategy = strategies[configuration.type]
-  return strategy(configuration)
+  return strategy(configuration, eventBus)
 }
 
 export default createNode
