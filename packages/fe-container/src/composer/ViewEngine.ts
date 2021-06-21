@@ -13,24 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import strings from '../index'
+import {Configuration} from '@mia-platform/core'
 
-describe('strings', () => {
-  it('en strings should be in it', () => {
-    const enKeys = Object.keys(strings.en)
-    for (let i = 0; i < enKeys.length; i++) {
-      test(enKeys[i], () => {
-        expect(strings.it[enKeys[i]]).not.toBe(undefined)
-      })
-    }
-  })
+import createNode from './NodeCreator'
 
-  it('it strings should be in en', () => {
-    const itKeys = Object.keys(strings.it)
-    for (let i = 0; i < itKeys.length; i++) {
-      test(itKeys[i], () => {
-        expect(strings.en[itKeys[i]]).not.toBe(undefined)
-      })
-    }
+const viewEngine = (configurations: Configuration[], root: HTMLElement = document.createElement('div')) => {
+  configurations.forEach(configuration => {
+    const createdNode = createNode(configuration)
+    viewEngine(configuration.content || [], createdNode)
+    root.appendChild(createdNode)
   })
-})
+  return root
+}
+
+export default viewEngine
