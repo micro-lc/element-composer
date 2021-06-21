@@ -21,7 +21,7 @@ describe('ViewEngine tests', () => {
     const rowConfig = {type}
     const viewBuilt = viewEngine([rowConfig])
     expect(viewBuilt.outerHTML).toBe('<div>' +
-      '<div style="display: &quot;flex&quot;; flex-direction: &quot;column&quot;">' +
+      '<div style="display: &quot;flex&quot;; flex-direction: &quot;column&quot;;">' +
       '</div>' +
       '</div>')
   })
@@ -31,7 +31,7 @@ describe('ViewEngine tests', () => {
     const rowConfig = {type}
     const viewBuilt = viewEngine([rowConfig])
     expect(viewBuilt.outerHTML).toBe('<div>' +
-      '<div style="display: &quot;flex&quot;; flex-direction: &quot;row&quot;">' +
+      '<div style="display: &quot;flex&quot;; flex-direction: &quot;row&quot;;">' +
       '</div>' +
       '</div>')
   })
@@ -42,8 +42,8 @@ describe('ViewEngine tests', () => {
     const rowConfig = {type: row, content: [{type: column}]}
     const viewBuilt = viewEngine([rowConfig])
     expect(viewBuilt.outerHTML).toBe('<div>' +
-      '<div style="display: &quot;flex&quot;; flex-direction: &quot;column&quot;">' +
-      '<div style="display: &quot;flex&quot;; flex-direction: &quot;row&quot;">' +
+      '<div style="display: &quot;flex&quot;; flex-direction: &quot;column&quot;;">' +
+      '<div style="display: &quot;flex&quot;; flex-direction: &quot;row&quot;;">' +
       '</div>' +
       '</div>' +
       '</div>')
@@ -68,8 +68,8 @@ describe('ViewEngine tests', () => {
     document.appendChild = jest.fn()
     const viewBuilt = viewEngine([rowConfig], {})
     expect(viewBuilt.outerHTML).toBe('<div>' +
-      '<div style="display: &quot;flex&quot;; flex-direction: &quot;column&quot;">' +
-      '<div style="display: &quot;flex&quot;; flex-direction: &quot;row&quot;">' +
+      '<div style="display: &quot;flex&quot;; flex-direction: &quot;column&quot;;">' +
+      '<div style="display: &quot;flex&quot;; flex-direction: &quot;row&quot;;">' +
       '<button attribute-a="value-a" event-bus="[object Object]"></button>' +
       '</div>' +
       '</div>' +

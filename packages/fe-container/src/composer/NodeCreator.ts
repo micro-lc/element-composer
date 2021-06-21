@@ -20,18 +20,17 @@ const rowStyle = 'display: "flex"; flex-direction: "column"'
 const columnStyle = 'display: "flex"; flex-direction: "row"'
 
 type CreateFunction = (configuration: Configuration) => HTMLDivElement
+type CreateInitialFunction = (initialStyle: string) => CreateFunction
 
-const createRow: CreateFunction = (configuration: Configuration) => {
-  const row = document.createElement('div')
-  row.setAttribute('style', rowStyle)
-  return row
+const createDiv: CreateInitialFunction = (initialStyle: string) => (configuration: Configuration) => {
+  const divElement = document.createElement('div')
+  divElement.setAttribute('style', `${initialStyle};${configuration.style || ''}`)
+  return divElement
 }
 
-const createColumn: CreateFunction = (configuration: Configuration) => {
-  const column = document.createElement('div')
-  column.setAttribute('style', columnStyle)
-  return column
-}
+const createRow: CreateFunction = createDiv(rowStyle)
+
+const createColumn: CreateFunction = createDiv(columnStyle)
 
 const importScript = (configuration: Configuration) => {
   const scriptElement = document.createElement('script')
