@@ -49,6 +49,7 @@ const createEnrichedElement = (configuration: Configuration, eventBus: ReplaySub
   Object.entries(configuration.config || {}).forEach(enricher)
   // @ts-ignore
   element.setAttribute('event-bus', eventBus)
+  element.setAttribute('style', (configuration.style || ''))
   return element
 }
 
