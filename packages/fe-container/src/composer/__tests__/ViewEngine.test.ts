@@ -65,7 +65,7 @@ describe('ViewEngine tests', () => {
         }]
       }]
     }
-    document.head.appendChild = jest.fn()
+    document.body.appendChild = jest.fn()
     const viewBuilt = viewEngine([rowConfig], {})
     expect(viewBuilt.outerHTML).toBe('<div>' +
       '<div style="display: flex; flex-direction: column; ">' +
@@ -74,8 +74,8 @@ describe('ViewEngine tests', () => {
       '</div>' +
       '</div>' +
       '</div>')
-    expect(document.head.appendChild).toHaveBeenCalledTimes(1)
-    const createdScript = document.head.appendChild.mock.calls[0][0].outerHTML
+    expect(document.body.appendChild).toHaveBeenCalledTimes(1)
+    const createdScript = document.body.appendChild.mock.calls[0][0].outerHTML
     expect(createdScript).toMatch('google.it')
     expect(createdScript).toMatch('type="module"')
   })
@@ -97,7 +97,7 @@ describe('ViewEngine tests', () => {
         }]
       }]
     }
-    document.head.appendChild = jest.fn()
+    document.body.appendChild = jest.fn()
     const viewBuilt = viewEngine([rowConfig], {})
     expect(viewBuilt.outerHTML).toBe('<div>' +
       '<div style="display: flex; flex-direction: column; ">' +
@@ -106,8 +106,8 @@ describe('ViewEngine tests', () => {
       '</div>' +
       '</div>' +
       '</div>')
-    expect(document.head.appendChild).toHaveBeenCalledTimes(1)
-    const createdScript = document.head.appendChild.mock.calls[0][0].outerHTML
+    expect(document.body.appendChild).toHaveBeenCalledTimes(1)
+    const createdScript = document.body.appendChild.mock.calls[0][0].outerHTML
     expect(createdScript).toMatch('google.it')
     expect(createdScript).toMatch('type="module"')
   })
