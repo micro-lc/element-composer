@@ -19,9 +19,11 @@ import ReactDOM from 'react-dom'
 
 import RootComponent from './RootComponent'
 
+const CONTAINER_ID = '#microlc-element-composer'
+
 function retrieveContainer (props: any) {
   const {container} = props
-  return container ? container.querySelector('#root') : document.querySelector('#microlc-element-composer')
+  return container ? container.querySelector(CONTAINER_ID) : document.querySelector(CONTAINER_ID)
 }
 
 function render (props: any) {
