@@ -39,18 +39,16 @@ const importScript = (configuration: Configuration) => {
   document.head.appendChild(scriptElement)
 }
 
-const enrichElementProps = (element: HTMLElement) => ([key, value]: string[]) => {
-  element.setAttribute(key, value)
+const enrichElementProps = (element: HTMLElement) => ([key, value]: any[]) => {
+  // @ts-ignore
+  element[key] = value
 }
 
 const createEnrichedElement = (configuration: Configuration, eventBus: Subject<any>) => {
   // @ts-ignore
   const element = document.createElement(configuration.tag)
-  const enricher: any = enrichElementProps(element)
-  Object.entries(configuration.config || {}).forEach(enricher)
-  // @ts-ignore
-  element.eventBus = eventBus
-  element.setAttribute('style', (configuration.style || ''))
+  const additionalProps = {eventBus, style: configuration.style || ''}
+  Object.entries({...configuration.config || {}, ...additionalProps}).forEach(enrichElementProps(element))
   return element
 }
 
