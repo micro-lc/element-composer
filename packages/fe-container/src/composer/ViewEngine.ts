@@ -20,11 +20,11 @@ import createNode from './NodeCreator'
 
 const viewEngine = (configurations: Configuration[],
   windowProxy: Window,
-  eventBus: Subject<any> = new ReplaySubject<any>(),
-  root: HTMLElement = document.createElement('div')): HTMLElement => {
+  root: HTMLElement = document.createElement('div'),
+  eventBus: Subject<any> = new ReplaySubject<any>()): HTMLElement => {
   configurations.forEach(configuration => {
     const createdNode = createNode(configuration, eventBus, windowProxy)
-    viewEngine(configuration.content || [], windowProxy, eventBus, createdNode)
+    viewEngine(configuration.content || [], windowProxy, createdNode, eventBus)
     root.appendChild(createdNode)
   })
   return root

@@ -14,10 +14,9 @@
  * limitations under the License.
  */
 import './public-path'
-import React from 'react'
 import ReactDOM from 'react-dom'
 
-import RootComponent from './RootComponent'
+import viewEngine from './composer/ViewEngine'
 
 const CONTAINER_ID = '#microlc-element-composer'
 
@@ -27,10 +26,8 @@ function retrieveContainer (props: any) {
 }
 
 function render (props: any) {
-  ReactDOM.render(
-    <RootComponent configuration={props.elementsConfiguration} windowProxy={props.globalWindow}/>,
-    retrieveContainer(props)
-  )
+  const container = retrieveContainer(props)
+  viewEngine([props.elementsConfiguration], props.globalWindow, container)
 }
 
 export async function mount (props: any) {
