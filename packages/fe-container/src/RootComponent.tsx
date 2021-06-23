@@ -17,6 +17,7 @@ import React, {useEffect, useRef} from 'react'
 import {IntlProvider} from 'react-intl'
 import {BrowserRouter} from 'react-router-dom'
 import {Configuration} from '@mia-platform/core'
+import PropTypes from 'prop-types'
 
 import viewEngine from './composer/ViewEngine'
 import messages from './strings'
@@ -24,15 +25,17 @@ import messages from './strings'
 const navigatorLanguage = navigator.language.substring(0, 2)
 const language = messages[navigatorLanguage] ? navigatorLanguage : 'en'
 
-const RootComponent: React.FC<Configuration> = (configuration) => {
+type RootComponentProps = {configuration: Configuration, windowProxy?: Window}
+
+const RootComponent: React.FC<RootComponentProps> = ({configuration, windowProxy = window}) => {
   const rootComponent = useRef<any>()
 
   useEffect(() => {
-    if (configuration.type) {
-      const components = viewEngine([configuration])
+    if (configuration?.type) {
+      const components = viewEngine([configuration], windowProxy)
       rootComponent.current.parentElement.appendChild(components)
     }
-  }, [configuration])
+  }, [configuration, windowProxy])
 
   return (
     <IntlProvider locale={language} messages={messages[language]}>
@@ -41,6 +44,11 @@ const RootComponent: React.FC<Configuration> = (configuration) => {
       </BrowserRouter>
     </IntlProvider>
   )
+}
+
+RootComponent.propTypes = {
+  configuration: PropTypes.any,
+  windowProxy: PropTypes.any
 }
 
 export default RootComponent

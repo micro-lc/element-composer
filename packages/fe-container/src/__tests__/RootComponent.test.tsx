@@ -26,7 +26,7 @@ describe('RootComponent tests', () => {
   })
 
   it('render a row', () => {
-    const {asFragment} = render(<RootComponent type={'row'} />)
+    const {asFragment} = render(<RootComponent configuration={{type: 'row'}} />)
     expect(asFragment()).toMatchSnapshot()
   })
 })

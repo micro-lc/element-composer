@@ -19,11 +19,12 @@ import {Subject, ReplaySubject} from 'rxjs'
 import createNode from './NodeCreator'
 
 const viewEngine = (configurations: Configuration[],
+  windowProxy: Window,
   eventBus: Subject<any> = new ReplaySubject<any>(),
   root: HTMLElement = document.createElement('div')): HTMLElement => {
   configurations.forEach(configuration => {
-    const createdNode = createNode(configuration, eventBus)
-    viewEngine(configuration.content || [], eventBus, createdNode)
+    const createdNode = createNode(configuration, eventBus, windowProxy)
+    viewEngine(configuration.content || [], windowProxy, eventBus, createdNode)
     root.appendChild(createdNode)
   })
   return root

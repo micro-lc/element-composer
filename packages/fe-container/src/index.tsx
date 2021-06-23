@@ -27,7 +27,10 @@ function retrieveContainer (props: any) {
 }
 
 function render (props: any) {
-  ReactDOM.render(<RootComponent {...props.elementsConfiguration}/>, retrieveContainer(props))
+  ReactDOM.render(
+    <RootComponent configuration={props.elementsConfiguration} windowProxy={props.globalWindow}/>,
+    retrieveContainer(props)
+  )
 }
 
 export async function mount (props: any) {
