@@ -70,7 +70,7 @@ describe('ViewEngine tests', () => {
     expect(viewBuilt.outerHTML).toBe('<div>' +
       '<div style="display: flex; flex-direction: column; ">' +
       '<div style="display: flex; flex-direction: row; ">' +
-      '<button attribute-a="value-a" event-bus="[object Object]" style=""></button>' +
+      '<button attribute-a="value-a" style=""></button>' +
       '</div>' +
       '</div>' +
       '</div>')
@@ -102,7 +102,7 @@ describe('ViewEngine tests', () => {
     expect(viewBuilt.outerHTML).toBe('<div>' +
       '<div style="display: flex; flex-direction: column; ">' +
       '<div style="display: flex; flex-direction: row; width: 89%">' +
-      '<button attribute-a="value-a" event-bus="[object Object]" style=""></button>' +
+      '<button attribute-a="value-a" style=""></button>' +
       '</div>' +
       '</div>' +
       '</div>')
