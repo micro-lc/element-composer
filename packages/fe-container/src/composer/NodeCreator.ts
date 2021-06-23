@@ -36,7 +36,7 @@ const importScript = (configuration: Configuration) => {
   const scriptElement = document.createElement('script')
   scriptElement.setAttribute('src', configuration.url || '')
   scriptElement.setAttribute('type', 'module')
-  document.appendChild(scriptElement)
+  document.head.appendChild(scriptElement)
 }
 
 const enrichElementProps = (element: HTMLElement) => ([key, value]: string[]) => {
