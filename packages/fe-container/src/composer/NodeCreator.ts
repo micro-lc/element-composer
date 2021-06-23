@@ -36,7 +36,9 @@ const importScript = (configuration: Configuration) => {
   const scriptElement = document.createElement('script')
   scriptElement.setAttribute('src', configuration.url || '')
   scriptElement.setAttribute('type', 'module')
-  document.head.appendChild(scriptElement)
+  // @ts-ignore
+  const documentInstance = window.proxy ? window.proxy.document : document
+  documentInstance.head.appendChild(scriptElement)
 }
 
 const enrichElementProps = (element: HTMLElement) => ([key, value]: string[]) => {
