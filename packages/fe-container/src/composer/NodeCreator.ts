@@ -15,7 +15,6 @@
  */
 import {Configuration} from '@mia-platform/core'
 import {Subject} from 'rxjs'
-import {execScripts} from 'import-html-entry'
 
 const rowStyle = 'display: flex; flex-direction: column'
 const columnStyle = 'display: flex; flex-direction: row'
@@ -34,10 +33,10 @@ const createRow: CreateFunction = createDiv(rowStyle)
 const createColumn: CreateFunction = createDiv(columnStyle)
 
 const importScript = (configuration: Configuration, windowProxy: Window) => {
-  if (configuration.url) {
-    // @ts-ignore
-    execScripts(configuration.url, [configuration.url], windowProxy).then(() => {})
-  }
+  const scriptElement = windowProxy.document.createElement('script')
+  scriptElement.setAttribute('src', configuration.url || '')
+  scriptElement.setAttribute('type', 'module')
+  windowProxy.document.head.appendChild(scriptElement)
 }
 
 const enrichElementProps = (element: HTMLElement) => ([key, value]: any[]) => {

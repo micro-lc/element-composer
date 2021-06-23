@@ -65,7 +65,8 @@ describe('ViewEngine tests', () => {
         }]
       }]
     }
-    const viewBuilt = viewEngine([rowConfig], {})
+    window.document.head.appendChild = jest.fn()
+    const viewBuilt = viewEngine([rowConfig], window)
     expect(viewBuilt.outerHTML).toBe('<div>' +
       '<div style="display: flex; flex-direction: column; ">' +
       '<div style="display: flex; flex-direction: row; ">' +
@@ -73,6 +74,10 @@ describe('ViewEngine tests', () => {
       '</div>' +
       '</div>' +
       '</div>')
+    expect(window.document.head.appendChild).toHaveBeenCalledTimes(1)
+    const createdScript = window.document.head.appendChild.mock.calls[0][0].outerHTML
+    expect(createdScript).toMatch('google.it')
+    expect(createdScript).toMatch('type="module"')
   })
 
   it('create correctly an element inside a styled column inside a row', () => {
@@ -92,7 +97,8 @@ describe('ViewEngine tests', () => {
         }]
       }]
     }
-    const viewBuilt = viewEngine([rowConfig], {})
+    window.document.head.appendChild = jest.fn()
+    const viewBuilt = viewEngine([rowConfig], window)
     expect(viewBuilt.outerHTML).toBe('<div>' +
       '<div style="display: flex; flex-direction: column; ">' +
       '<div style="display: flex; flex-direction: row; width: 89%">' +
@@ -100,5 +106,9 @@ describe('ViewEngine tests', () => {
       '</div>' +
       '</div>' +
       '</div>')
+    expect(window.document.head.appendChild).toHaveBeenCalledTimes(1)
+    const createdScript = window.document.head.appendChild.mock.calls[0][0].outerHTML
+    expect(createdScript).toMatch('google.it')
+    expect(createdScript).toMatch('type="module"')
   })
 })
