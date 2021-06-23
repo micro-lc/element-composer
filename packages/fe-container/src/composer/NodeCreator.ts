@@ -49,7 +49,7 @@ const createEnrichedElement = (configuration: Configuration, eventBus: Subject<a
   const enricher: any = enrichElementProps(element)
   Object.entries(configuration.config || {}).forEach(enricher)
   // @ts-ignore
-  element.setAttribute('event-bus', eventBus)
+  element['event-bus'] = eventBus
   element.setAttribute('style', (configuration.style || ''))
   return element
 }
