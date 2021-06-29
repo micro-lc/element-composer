@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 import {Configuration} from '@mia-platform/core'
-import {Subject, ReplaySubject} from 'rxjs'
+import {Subject} from 'rxjs'
 
 import createNode from './NodeCreator'
 

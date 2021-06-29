@@ -61,6 +61,7 @@ function eventLogger (event: any) {
     time: new Date(),
     content: event
   }
+  // eslint-disable-next-line
   console.log(loggedContent)
 }
 
