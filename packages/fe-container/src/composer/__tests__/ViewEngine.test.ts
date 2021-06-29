@@ -66,7 +66,7 @@ describe('ViewEngine tests', () => {
       }]
     }
     window.document.head.appendChild = jest.fn()
-    const viewBuilt = viewEngine([rowConfig], window)
+    const viewBuilt = viewEngine([rowConfig])
     expect(viewBuilt.outerHTML).toBe('<div>' +
       '<div style="display: flex; flex-direction: column; ">' +
       '<div style="display: flex; flex-direction: row; ">' +
@@ -98,7 +98,7 @@ describe('ViewEngine tests', () => {
       }]
     }
     window.document.head.appendChild = jest.fn()
-    const viewBuilt = viewEngine([rowConfig], window)
+    const viewBuilt = viewEngine([rowConfig])
     expect(viewBuilt.outerHTML).toBe('<div>' +
       '<div style="display: flex; flex-direction: column; ">' +
       '<div style="display: flex; flex-direction: row; width: 89%">' +

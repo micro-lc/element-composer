@@ -32,11 +32,11 @@ const createRow: CreateFunction = createDiv(rowStyle)
 
 const createColumn: CreateFunction = createDiv(columnStyle)
 
-const importScript = (configuration: Configuration, windowProxy: Window) => {
-  const scriptElement = windowProxy.document.createElement('script')
+const importScript = (configuration: Configuration) => {
+  const scriptElement = document.createElement('script')
   scriptElement.setAttribute('src', configuration.url || '')
   scriptElement.setAttribute('type', 'module')
-  windowProxy.document.head.appendChild(scriptElement)
+  document.head.appendChild(scriptElement)
 }
 
 const enrichElementProps = (element: HTMLElement) => ([key, value]: any[]) => {
@@ -52,8 +52,8 @@ const createEnrichedElement = (configuration: Configuration, eventBus: Subject<a
   return element
 }
 
-const createElement = (configuration: Configuration, eventBus: Subject<any>, windowProxy: Window) => {
-  importScript(configuration, windowProxy)
+const createElement = (configuration: Configuration, eventBus: Subject<any>) => {
+  importScript(configuration)
   return createEnrichedElement(configuration, eventBus)
 }
 
@@ -63,9 +63,9 @@ const strategies = {
   element: createElement
 }
 
-const createNode = (configuration: Configuration, eventBus: Subject<any>, windowProxy: Window) => {
+const createNode = (configuration: Configuration, eventBus: Subject<any>) => {
   const strategy = strategies[configuration.type]
-  return strategy(configuration, eventBus, windowProxy)
+  return strategy(configuration, eventBus)
 }
 
 export default createNode

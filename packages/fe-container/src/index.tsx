@@ -27,7 +27,7 @@ function retrieveContainer (props: any) {
 
 function render (props: any) {
   const container = retrieveContainer(props)
-  viewEngine([props.elementsConfiguration], props.globalWindow, container)
+  viewEngine([props.elementsConfiguration], container)
 }
 
 export async function mount (props: any) {
