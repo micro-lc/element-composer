@@ -14,14 +14,13 @@
  * limitations under the License.
  */
 import './public-path'
+
+import React from 'react'
 import ReactDOM from 'react-dom'
 
-import viewEngine from './composer/ViewEngine'
-import {ReplaySubject, Subscription} from 'rxjs'
+import Composer from './components/Composer'
 
 const CONTAINER_ID = '#microlc-element-composer'
-
-let subscription: Subscription
 
 function retrieveContainer (props: any) {
   const {container} = props
@@ -29,12 +28,10 @@ function retrieveContainer (props: any) {
 }
 
 function render (props: any) {
-  const container = retrieveContainer(props)
-  const eventBus = new ReplaySubject<any>()
-  if (mustLogEvents()) {
-    subscription = eventBus.subscribe(eventLogger)
-  }
-  viewEngine([props.elementsConfiguration], container, eventBus)
+  ReactDOM.render(
+    <Composer configurationName={props.configurationName}/>,
+    retrieveContainer(props)
+  )
 }
 
 export async function mount (props: any) {
@@ -42,27 +39,11 @@ export async function mount (props: any) {
 }
 
 export async function unmount (props: any) {
-  if (mustLogEvents()) {
-    subscription.unsubscribe()
-  }
   ReactDOM.unmountComponentAtNode(retrieveContainer(props))
 }
 
 export async function bootstrap () {
 
-}
-
-function mustLogEvents () {
-  return process.env.NODE_ENV !== 'production'
-}
-
-function eventLogger (event: any) {
-  const loggedContent = {
-    time: new Date(),
-    content: event
-  }
-  // eslint-disable-next-line
-  console.log(loggedContent)
 }
 
 // @ts-ignore
