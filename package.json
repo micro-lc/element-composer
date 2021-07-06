@@ -1,7 +1,7 @@
 {
-  "name": "mia-microlc",
+  "name": "microlc-element-composer",
   "version": "0.1.0",
-  "description": "The Mia-Platform micro frontend solution",
+  "description": "Microlc plugin to compose pages out of Web Components",
   "private": true,
   "workspaces": [
     "packages/*"
@@ -39,6 +39,6 @@
       "pre-commit": "npm-run-all lint coverage"
     }
   },
-  "repository": "git@github.com:mia-platform/microlc.git",
+  "repository": "git@github.com:mia-platform/microlc-element-composer.git",
   "license": "SEE LICENSE IN LICENSE"
 }

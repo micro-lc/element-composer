@@ -1,6 +1,6 @@
 {
-  "short_name": "mia-microlc",
-  "name": "Mia-Platform micro frontend launcher",
+  "short_name": "microlc-element-composer",
+  "name": "Microlc plugin to compose pages out of Web Components",
   "icons": [
     {
       "src": "favicon.png",

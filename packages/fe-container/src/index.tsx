@@ -48,5 +48,6 @@ export async function bootstrap () {
 
 // @ts-ignore
 if (!window.__POWERED_BY_QIANKUN__) {
-  render({})
+  const configurationName = 'microlc-element-composer'
+  render({configurationName})
 }
