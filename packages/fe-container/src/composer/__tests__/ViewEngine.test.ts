@@ -112,6 +112,8 @@ describe('ViewEngine tests', () => {
     const createdScript = window.document.head.appendChild.mock.calls[0][0]
     expect(createdScript.src).toBe('https://google.it/')
     expect(createdScript.type).toBe('module')
+    const button = viewBuilt.getElementsByTagName('button')[0]
+    expect(button.eventBus).not.toBeUndefined()
   })
 
   it('2 elements have the same bus', () => {
