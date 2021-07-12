@@ -18,8 +18,7 @@ const Composer: React.FC<ComposerProps> = ({configurationName}) => {
 
   useEffect(() => {
     if (configuration) {
-      const eventBus = new ReplaySubject<any>()
-      viewEngine([configuration], rootComponent.current.parentElement, eventBus)
+      viewEngine([configuration], rootComponent.current.parentElement)
     }
   }, [configuration])
 

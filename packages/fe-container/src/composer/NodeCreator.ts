@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 import {Configuration} from '@mia-platform/core'
-import {Subject} from 'rxjs'
+import {ReplaySubject, Subject} from 'rxjs'
 
 const rowStyle = 'display: flex; flex-direction: column'
 const columnStyle = 'display: flex; flex-direction: row'
 
 type CreateFunction = (configuration: Configuration) => HTMLDivElement
 type CreateInitialFunction = (initialStyle: string) => CreateFunction
+
+const registeredBus: Record<string, Subject<any>> = {}
 
 const createDiv: CreateInitialFunction = (initialStyle: string) => (configuration: Configuration) => {
   const divElement = document.createElement('div')
@@ -44,9 +46,19 @@ const enrichElementProps = (element: HTMLElement) => ([key, value]: any[]) => {
   element[key] = value
 }
 
-const createEnrichedElement = (configuration: Configuration, eventBus: Subject<any>) => {
+const retrieveEventBus = (configuration: Configuration): Subject<any> | undefined => {
+  let eventBus
+  if (configuration.busDiscriminator) {
+    eventBus = registeredBus[configuration.busDiscriminator] || new ReplaySubject<any>()
+    registeredBus[configuration.busDiscriminator] = eventBus
+  }
+  return eventBus
+}
+
+const createEnrichedElement = (configuration: Configuration, defaultEventBus: Subject<any>) => {
   // @ts-ignore
   const element = document.createElement(configuration.tag)
+  const eventBus = retrieveEventBus(configuration) || defaultEventBus
   const additionalProps = {eventBus, style: configuration.style || ''}
   Object.entries({...configuration.config || {}, ...additionalProps}).forEach(enrichElementProps(element))
   return element

@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 import {Configuration} from '@mia-platform/core'
-import {Subject} from 'rxjs'
+import {ReplaySubject, Subject} from 'rxjs'
 
 import createNode from './NodeCreator'
 
 const viewEngine = (configurations: Configuration[],
   root: HTMLElement = document.createElement('div'),
-  eventBus: Subject<any>): HTMLElement => {
+  eventBus: Subject<any> = new ReplaySubject<any>()): HTMLElement => {
   configurations.forEach(configuration => {
     const createdNode = createNode(configuration, eventBus)
     viewEngine(configuration.content || [], createdNode, eventBus)
