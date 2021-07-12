@@ -28,10 +28,7 @@ function retrieveContainer (props: any) {
 }
 
 function render (props: any) {
-  ReactDOM.render(
-    <Composer configurationName={props.configurationName}/>,
-    retrieveContainer(props)
-  )
+  ReactDOM.render(<Composer configurationName={props.configurationName}/>, retrieveContainer(props))
 }
 
 export async function mount (props: any) {

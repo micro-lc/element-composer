@@ -75,9 +75,11 @@ describe('ViewEngine tests', () => {
       '</div>' +
       '</div>')
     expect(window.document.head.appendChild).toHaveBeenCalledTimes(1)
-    const createdScript = window.document.head.appendChild.mock.calls[0][0].outerHTML
-    expect(createdScript).toMatch('google.it')
-    expect(createdScript).toMatch('type="module"')
+    const createdScript = window.document.head.appendChild.mock.calls[0][0]
+    expect(createdScript.src).toBe('https://google.it/')
+    expect(createdScript.type).toMatch('module')
+    const button = viewBuilt.getElementsByTagName('button')[0]
+    expect(button.eventBus).not.toBeUndefined()
   })
 
   it('create correctly an element inside a styled column inside a row', () => {
@@ -107,8 +109,111 @@ describe('ViewEngine tests', () => {
       '</div>' +
       '</div>')
     expect(window.document.head.appendChild).toHaveBeenCalledTimes(1)
-    const createdScript = window.document.head.appendChild.mock.calls[0][0].outerHTML
-    expect(createdScript).toMatch('google.it')
-    expect(createdScript).toMatch('type="module"')
+    const createdScript = window.document.head.appendChild.mock.calls[0][0]
+    expect(createdScript.src).toBe('https://google.it/')
+    expect(createdScript.type).toBe('module')
+    const button = viewBuilt.getElementsByTagName('button')[0]
+    expect(button.eventBus).not.toBeUndefined()
+  })
+
+  it('2 elements have the same bus', () => {
+    const column: 'column' = 'column'
+    const row: 'row' = 'row'
+    const element: 'element' = 'element'
+    const rowConfig = {
+      type: row,
+      content: [{
+        type: column,
+        style: 'width: 89%',
+        content: [{
+          type: element,
+          tag: 'button',
+          url: 'https://google.it',
+          config: {'attribute-a': 'value-a', id: 'button'}
+        }, {
+          type: element,
+          tag: 'button',
+          url: 'https://google.it',
+          config: {'attribute-a': 'value-a', id: 'button1'}
+        }]
+      }]
+    }
+    window.document.head.appendChild = jest.fn()
+    const viewBuilt = viewEngine([rowConfig])
+    expect(window.document.head.appendChild).toHaveBeenCalledTimes(2)
+    const button = viewBuilt.getElementsByTagName('button')[0]
+    const button1 = viewBuilt.getElementsByTagName('button')[1]
+    expect(button.eventBus).toBe(button1.eventBus)
+  })
+
+  it('2 elements have different bus using a discriminator', () => {
+    const column: 'column' = 'column'
+    const row: 'row' = 'row'
+    const element: 'element' = 'element'
+    const rowConfig = {
+      type: row,
+      content: [{
+        type: column,
+        style: 'width: 89%',
+        content: [{
+          type: element,
+          tag: 'button',
+          url: 'https://google.it',
+          config: {'attribute-a': 'value-a'}
+        }, {
+          type: element,
+          tag: 'button',
+          url: 'https://google.it',
+          busDiscriminator: 'button-1',
+          config: {'attribute-a': 'value-a'}
+        }]
+      }]
+    }
+    window.document.head.appendChild = jest.fn()
+    const viewBuilt = viewEngine([rowConfig])
+    expect(window.document.head.appendChild).toHaveBeenCalledTimes(2)
+    const button = viewBuilt.getElementsByTagName('button')[0]
+    const button1 = viewBuilt.getElementsByTagName('button')[1]
+    expect(button.eventBus).not.toBe(button1.eventBus)
+  })
+
+  it('2 elements have same bus using a discriminator, 1 has different bus without discriminator', () => {
+    const column: 'column' = 'column'
+    const row: 'row' = 'row'
+    const element: 'element' = 'element'
+    const rowConfig = {
+      type: row,
+      content: [{
+        type: column,
+        style: 'width: 89%',
+        content: [{
+          type: element,
+          tag: 'button',
+          url: 'https://google.it',
+          busDiscriminator: 'button-1',
+          config: {'attribute-a': 'value-a'}
+        }, {
+          type: element,
+          tag: 'button',
+          url: 'https://google.it',
+          config: {'attribute-a': 'value-a'}
+        }, {
+          type: element,
+          tag: 'button',
+          url: 'https://google.it',
+          busDiscriminator: 'button-1',
+          config: {'attribute-a': 'value-a'}
+        }]
+      }]
+    }
+    window.document.head.appendChild = jest.fn()
+    const viewBuilt = viewEngine([rowConfig])
+    expect(window.document.head.appendChild).toHaveBeenCalledTimes(3)
+    const button = viewBuilt.getElementsByTagName('button')[0]
+    const button1 = viewBuilt.getElementsByTagName('button')[1]
+    const button2 = viewBuilt.getElementsByTagName('button')[2]
+    expect(button.eventBus).not.toBe(button1.eventBus)
+    expect(button2.eventBus).not.toBe(button1.eventBus)
+    expect(button.eventBus).toBe(button2.eventBus)
   })
 })

@@ -1,5 +1,4 @@
 import React, {useEffect, useRef} from 'react'
-import {ReplaySubject} from 'rxjs'
 import PropTypes from 'prop-types'
 import {LoadingAnimation} from '@mia-platform/microlc-ui-components'
 
@@ -18,8 +17,7 @@ const Composer: React.FC<ComposerProps> = ({configurationName}) => {
 
   useEffect(() => {
     if (configuration) {
-      const eventBus = new ReplaySubject<any>()
-      viewEngine([configuration], rootComponent.current.parentElement, eventBus)
+      viewEngine([configuration], rootComponent.current.parentElement)
     }
   }, [configuration])
 
