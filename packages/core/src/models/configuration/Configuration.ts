@@ -44,6 +44,10 @@ const configurationSchema = {
       type: 'string',
       description: 'CSS style to inject to the DOM element',
     },
+    busDiscriminator: {
+      type: 'string',
+      description: 'Event bus discriminator',
+    },
   },
   additionalProperties: false,
   required: ['type'],
