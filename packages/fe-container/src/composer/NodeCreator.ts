@@ -35,10 +35,9 @@ const createRow: CreateFunction = createDiv(rowStyle)
 const createColumn: CreateFunction = createDiv(columnStyle)
 
 const importScript = (configuration: Configuration) => {
-  const scriptElement = document.createElement('script')
-  scriptElement.setAttribute('src', configuration.url || '')
-  scriptElement.setAttribute('type', 'module')
-  document.head.appendChild(scriptElement)
+  if (configuration.url) {
+    import(/* webpackIgnore: true */ configuration.url)
+  }
 }
 
 const enrichElementProps = (element: HTMLElement) => ([key, value]: any[]) => {

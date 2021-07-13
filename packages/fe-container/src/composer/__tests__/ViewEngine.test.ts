@@ -65,7 +65,6 @@ describe('ViewEngine tests', () => {
         }]
       }]
     }
-    window.document.head.appendChild = jest.fn()
     const viewBuilt = viewEngine([rowConfig])
     expect(viewBuilt.outerHTML).toBe('<div>' +
       '<div style="display: flex; flex-direction: column; ">' +
@@ -74,10 +73,6 @@ describe('ViewEngine tests', () => {
       '</div>' +
       '</div>' +
       '</div>')
-    expect(window.document.head.appendChild).toHaveBeenCalledTimes(1)
-    const createdScript = window.document.head.appendChild.mock.calls[0][0]
-    expect(createdScript.src).toBe('https://google.it/')
-    expect(createdScript.type).toMatch('module')
     const button = viewBuilt.getElementsByTagName('button')[0]
     expect(button.eventBus).not.toBeUndefined()
   })
@@ -99,7 +94,6 @@ describe('ViewEngine tests', () => {
         }]
       }]
     }
-    window.document.head.appendChild = jest.fn()
     const viewBuilt = viewEngine([rowConfig])
     expect(viewBuilt.outerHTML).toBe('<div>' +
       '<div style="display: flex; flex-direction: column; ">' +
@@ -108,10 +102,6 @@ describe('ViewEngine tests', () => {
       '</div>' +
       '</div>' +
       '</div>')
-    expect(window.document.head.appendChild).toHaveBeenCalledTimes(1)
-    const createdScript = window.document.head.appendChild.mock.calls[0][0]
-    expect(createdScript.src).toBe('https://google.it/')
-    expect(createdScript.type).toBe('module')
     const button = viewBuilt.getElementsByTagName('button')[0]
     expect(button.eventBus).not.toBeUndefined()
   })
@@ -138,9 +128,7 @@ describe('ViewEngine tests', () => {
         }]
       }]
     }
-    window.document.head.appendChild = jest.fn()
     const viewBuilt = viewEngine([rowConfig])
-    expect(window.document.head.appendChild).toHaveBeenCalledTimes(2)
     const button = viewBuilt.getElementsByTagName('button')[0]
     const button1 = viewBuilt.getElementsByTagName('button')[1]
     expect(button.eventBus).toBe(button1.eventBus)
@@ -169,9 +157,7 @@ describe('ViewEngine tests', () => {
         }]
       }]
     }
-    window.document.head.appendChild = jest.fn()
     const viewBuilt = viewEngine([rowConfig])
-    expect(window.document.head.appendChild).toHaveBeenCalledTimes(2)
     const button = viewBuilt.getElementsByTagName('button')[0]
     const button1 = viewBuilt.getElementsByTagName('button')[1]
     expect(button.eventBus).not.toBe(button1.eventBus)
@@ -206,9 +192,7 @@ describe('ViewEngine tests', () => {
         }]
       }]
     }
-    window.document.head.appendChild = jest.fn()
     const viewBuilt = viewEngine([rowConfig])
-    expect(window.document.head.appendChild).toHaveBeenCalledTimes(3)
     const button = viewBuilt.getElementsByTagName('button')[0]
     const button1 = viewBuilt.getElementsByTagName('button')[1]
     const button2 = viewBuilt.getElementsByTagName('button')[2]
