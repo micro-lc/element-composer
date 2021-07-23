@@ -4,23 +4,11 @@
   "private": true,
   "homepage": "./",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.3",
     "@mia-platform/microlc-ui-components": "^0.1.0",
-    "@types/tinycolor2": "^1.4.2",
-    "antd": "^4.14.0",
-    "axios": "^0.21.1",
-    "classnames": "^2.2.6",
-    "history": "^4.10.1",
-    "nock": "^13.0.11",
-    "qiankun": "^2.4.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-error-boundary": "^3.1.1",
-    "react-intl": "^5.13.3",
-    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
-    "rxjs": "7.1.0",
-    "values.js": "^2.0.0"
+    "rxjs": "7.1.0"
   },
   "scripts": {
     "lint": "eslint src --ext .js,.ts,.tsx",
@@ -70,8 +58,6 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
-    "@types/react-gtm-module": "^2.0.0",
-    "@types/react-router-dom": "^5.1.7",
     "eslint-config-react-app": "^6.0.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-config-standard-react": "^11.0.1",
@@ -82,8 +68,8 @@
     "eslint-plugin-promise": "^4.3.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-standard": "^5.0.0",
+    "nock": "^13.1.1",
     "npm-run-all": "^4.1.5",
-    "react-gtm-module": "^2.0.11",
     "standard-version": "^9.1.1",
     "typescript": "^4.2.3"
   },
