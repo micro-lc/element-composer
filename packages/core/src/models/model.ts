@@ -14,3 +14,4 @@
  * limitations under the License.
  */
 export * from './configuration/index'
+export * from './user/index'
