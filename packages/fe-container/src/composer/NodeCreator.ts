@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {Configuration} from '@mia-platform/core'
+import {Configuration, User} from '@mia-platform/core'
 import {ReplaySubject, Subject} from 'rxjs'
 
 const rowStyle = 'display: flex; flex-direction: column'
@@ -54,7 +54,7 @@ const retrieveEventBus = (configuration: Configuration): Subject<any> | undefine
   return eventBus
 }
 
-const createEnrichedElement = (configuration: Configuration, currentUser: object, defaultEventBus: Subject<any>) => {
+const createEnrichedElement = (configuration: Configuration, currentUser: Partial<User>, defaultEventBus: Subject<any>) => {
   // @ts-ignore
   const element = document.createElement(configuration.tag)
   const eventBus = retrieveEventBus(configuration) || defaultEventBus
@@ -63,7 +63,7 @@ const createEnrichedElement = (configuration: Configuration, currentUser: object
   return element
 }
 
-const createElement = (configuration: Configuration, currentUser: object, eventBus: Subject<any>) => {
+const createElement = (configuration: Configuration, currentUser: Partial<User>, eventBus: Subject<any>) => {
   importScript(configuration)
   return createEnrichedElement(configuration, currentUser, eventBus)
 }
@@ -74,7 +74,7 @@ const strategies = {
   element: createElement
 }
 
-const createNode = (configuration: Configuration, currentUser: object, eventBus: Subject<any>) => {
+const createNode = (configuration: Configuration, currentUser: Partial<User>, eventBus: Subject<any>) => {
   const strategy = strategies[configuration.type]
   return strategy(configuration, currentUser, eventBus)
 }
