@@ -201,3 +201,32 @@ describe('ViewEngine tests', () => {
     expect(button.eventBus).toBe(button2.eventBus)
   })
 })
+
+describe('ViewEngine tests supporting `currentUser` prop', () => {
+  it('creates an element with no `currentUser` prop', () => {
+    const element: 'element' = 'element'
+    const rowConfig = {
+      type: element,
+      tag: 'div'
+    }
+    const viewBuilt = viewEngine([rowConfig])
+    const div = viewBuilt.getElementsByTagName('div')[0]
+    // @ts-ignore
+    expect(div.currentUser).toMatchObject({})
+  })
+  it('creates an element with a `currentUser` prop', () => {
+    const currentUser = {
+      name: 'user'
+    }
+
+    const element: 'element' = 'element'
+    const rowConfig = {
+      type: element,
+      tag: 'div'
+    }
+    const viewBuilt = viewEngine([rowConfig], currentUser)
+    const div = viewBuilt.getElementsByTagName('div')[0]
+    // @ts-ignore
+    expect(div.currentUser).toMatchObject(currentUser)
+  })
+})
