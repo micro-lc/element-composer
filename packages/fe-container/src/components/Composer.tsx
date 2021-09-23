@@ -15,21 +15,22 @@ const currentUserShape = PropTypes.shape({
 
 const propTypes = {
   configurationName: PropTypes.string.isRequired,
-  currentUser: currentUserShape
+  currentUser: currentUserShape,
+  headers: PropTypes.object
 }
 
 type ComposerProps = PropTypes.InferProps<typeof propTypes>
 
-const Composer: React.FC<ComposerProps> = ({configurationName, currentUser}) => {
+const Composer: React.FC<ComposerProps> = ({configurationName, currentUser, headers}) => {
   const configuration = useConfiguration(configurationName)
   const rootComponent = useRef<any>()
 
   useEffect(() => {
     if (configuration) {
       // @ts-ignore
-      viewEngine([configuration], currentUser, rootComponent.current.parentElement)
+      viewEngine([configuration], currentUser, headers, rootComponent.current.parentElement)
     }
-  }, [configuration, currentUser])
+  }, [configuration, currentUser, headers])
 
   return (
     configuration ? <div data-testid={'sibling-div'} ref={rootComponent}/> : <LoadingAnimation/>

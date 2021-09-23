@@ -230,3 +230,35 @@ describe('ViewEngine tests supporting `currentUser` prop', () => {
     expect(div.currentUser).toMatchObject(currentUser)
   })
 })
+
+describe('ViewEngine tests supporting `headers` prop', () => {
+  it('creates an element with no `headers` prop', () => {
+    const element: 'element' = 'element'
+    const rowConfig = {
+      type: element,
+      tag: 'div'
+    }
+    const viewBuilt = viewEngine([rowConfig])
+    const div = viewBuilt.getElementsByTagName('div')[0]
+    // @ts-ignore
+    expect(div.headers).toMatchObject({})
+  })
+  it('creates an element with a `currentUser` prop', () => {
+    const headers = {
+      'content-type': 'application/json',
+      'whatever-custom-header': 'custom header content'
+    }
+
+    const element: 'element' = 'element'
+    const rowConfig = {
+      type: element,
+      tag: 'div'
+    }
+    const viewBuilt = viewEngine([rowConfig], undefined, headers)
+    const div = viewBuilt.getElementsByTagName('div')[0]
+    // @ts-ignore
+    expect(div.currentUser).toMatchObject({})
+    // @ts-ignore
+    expect(div.headers).toMatchObject(headers)
+  })
+})
