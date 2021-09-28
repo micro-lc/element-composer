@@ -32,6 +32,7 @@ function render (props: any) {
     <Composer
       configurationName={props.configurationName}
       currentUser={props.currentUser}
+      headers={props.headers}
     />,
     retrieveContainer(props)
   )
