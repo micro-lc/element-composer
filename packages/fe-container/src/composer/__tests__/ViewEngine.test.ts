@@ -69,7 +69,7 @@ describe('ViewEngine tests', () => {
     expect(viewBuilt.outerHTML).toBe('<div>' +
       '<div style="display: flex; flex-direction: column; ">' +
       '<div style="display: flex; flex-direction: row; ">' +
-      '<button style=""></button>' +
+      '<button></button>' +
       '</div>' +
       '</div>' +
       '</div>')
@@ -85,7 +85,9 @@ describe('ViewEngine tests', () => {
       type: row,
       content: [{
         type: column,
-        style: 'width: 89%',
+        attributes: {
+          style: 'width: 89%'
+        },
         content: [{
           type: element,
           tag: 'button',
@@ -98,7 +100,7 @@ describe('ViewEngine tests', () => {
     expect(viewBuilt.outerHTML).toBe('<div>' +
       '<div style="display: flex; flex-direction: column; ">' +
       '<div style="display: flex; flex-direction: row; width: 89%">' +
-      '<button style=""></button>' +
+      '<button></button>' +
       '</div>' +
       '</div>' +
       '</div>')

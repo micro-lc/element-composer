@@ -15,6 +15,7 @@
  */
 import {Configuration} from '@mia-platform/core'
 import {ReplaySubject, Subject} from 'rxjs'
+import {applyAttributes, applyProps} from './NodeEnricher'
 
 const rowStyle = 'display: flex; flex-direction: column'
 const columnStyle = 'display: flex; flex-direction: row'
@@ -26,7 +27,11 @@ const registeredBus: Record<string, Subject<any>> = {}
 
 const createDiv: CreateInitialFunction = (initialStyle: string) => (configuration: Configuration) => {
   const divElement = document.createElement('div')
-  divElement.setAttribute('style', `${initialStyle}; ${configuration.style || ''}`)
+  applyAttributes(divElement, {
+    ...configuration.attributes,
+    style: `${initialStyle}; ${configuration.attributes?.style || ''}`
+  })
+  applyProps(divElement, configuration.properties)
   return divElement
 }
 
@@ -35,14 +40,9 @@ const createRow: CreateFunction = createDiv(rowStyle)
 const createColumn: CreateFunction = createDiv(columnStyle)
 
 const importScript = (configuration: Configuration) => {
-  if (configuration.url) {
-    import(/* webpackIgnore: true */ configuration.url)
+  if (configuration.properties?.src) {
+    import(/* webpackIgnore: true */ configuration.properties.src as string)
   }
-}
-
-const enrichElementProps = (element: HTMLElement) => ([key, value]: any[]) => {
-  // @ts-ignore
-  element[key] = value
 }
 
 const retrieveEventBus = (configuration: Configuration): Subject<any> | undefined => {
@@ -58,8 +58,8 @@ const createEnrichedElement = (configuration: Configuration, defaultEventBus: Su
   // @ts-ignore
   const element = document.createElement(configuration.tag)
   const eventBus = retrieveEventBus(configuration) || defaultEventBus
-  const additionalProps = {eventBus, style: configuration.style || ''}
-  Object.entries({...configuration.config || {}, ...additionalProps}).forEach(enrichElementProps(element))
+  applyProps(element, {eventBus, ...configuration.properties})
+  applyAttributes(element, configuration.attributes)
   return element
 }
 
