@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {Configuration} from '@mia-platform/core'
+import {Configuration, User} from '@mia-platform/core'
 import {ReplaySubject, Subject} from 'rxjs'
 import {applyAttributes, applyProps} from './NodeEnricher'
 
@@ -55,18 +55,18 @@ const retrieveEventBus = (configuration: Configuration): Subject<any> | undefine
   return eventBus
 }
 
-const createEnrichedElement = (configuration: Configuration, defaultEventBus: Subject<any>) => {
+const createEnrichedElement = (configuration: Configuration, currentUser: Partial<User>, headers: Record<string, string>, defaultEventBus: Subject<any>) => {
   // @ts-ignore
   const element = document.createElement(configuration.tag)
   const eventBus = retrieveEventBus(configuration) || defaultEventBus
-  applyProps(element, {eventBus, ...configuration.properties})
+  applyProps(element, {...configuration.properties, eventBus, currentUser, headers})
   applyAttributes(element, configuration.attributes)
   return element
 }
 
-const createElement = (configuration: Configuration, eventBus: Subject<any>) => {
+const createElement = (configuration: Configuration, currentUser: Partial<User>, headers: Record<string, string>, eventBus: Subject<any>) => {
   importScript(configuration)
-  return createEnrichedElement(configuration, eventBus)
+  return createEnrichedElement(configuration, currentUser, headers, eventBus)
 }
 
 const strategies = {
@@ -75,9 +75,9 @@ const strategies = {
   element: createElement
 }
 
-const createNode = (configuration: Configuration, eventBus: Subject<any>) => {
+const createNode = (configuration: Configuration, currentUser: Partial<User>, headers: Record<string, string>, eventBus: Subject<any>) => {
   const strategy = strategies[configuration.type]
-  return strategy(configuration, eventBus)
+  return strategy(configuration, currentUser, headers, eventBus)
 }
 
 export default createNode

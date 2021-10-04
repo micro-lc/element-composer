@@ -13,5 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-export * from './configuration/index'
-export * from './user/index'
+import {FromSchema} from 'json-schema-to-ts'
+
+export const userSchema = {
+  type: 'object',
+  properties: {
+    avatar: {
+      type: 'string',
+    },
+    email: {
+      type: 'string',
+    },
+    groups: {
+      type: 'array',
+      items: {
+        type: 'string',
+      },
+    },
+    name: {
+      type: 'string',
+    },
+    nickname: {
+      type: 'string',
+    },
+  },
+  required: ['email', 'groups', 'name'],
+} as const
+
+export type User = FromSchema<typeof userSchema>
