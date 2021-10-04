@@ -61,7 +61,7 @@ describe('ViewEngine tests', () => {
           type: element,
           tag: 'button',
           url: 'https://google.it',
-          config: {'attribute-a': 'value-a'}
+          properties: {'attribute-a': 'value-a'}
         }]
       }]
     }
@@ -92,7 +92,7 @@ describe('ViewEngine tests', () => {
           type: element,
           tag: 'button',
           url: 'https://google.it',
-          config: {'attribute-a': 'value-a'}
+          properties: {'attribute-a': 'value-a'}
         }]
       }]
     }
@@ -121,12 +121,12 @@ describe('ViewEngine tests', () => {
           type: element,
           tag: 'button',
           url: 'https://google.it',
-          config: {'attribute-a': 'value-a', id: 'button'}
+          properties: {'attribute-a': 'value-a', id: 'button'}
         }, {
           type: element,
           tag: 'button',
           url: 'https://google.it',
-          config: {'attribute-a': 'value-a', id: 'button1'}
+          properties: {'attribute-a': 'value-a', id: 'button1'}
         }]
       }]
     }
@@ -149,13 +149,13 @@ describe('ViewEngine tests', () => {
           type: element,
           tag: 'button',
           url: 'https://google.it',
-          config: {'attribute-a': 'value-a'}
+          properties: {'attribute-a': 'value-a'}
         }, {
           type: element,
           tag: 'button',
           url: 'https://google.it',
           busDiscriminator: 'button-1',
-          config: {'attribute-a': 'value-a'}
+          properties: {'attribute-a': 'value-a'}
         }]
       }]
     }
@@ -179,18 +179,18 @@ describe('ViewEngine tests', () => {
           tag: 'button',
           url: 'https://google.it',
           busDiscriminator: 'button-1',
-          config: {'attribute-a': 'value-a'}
+          properties: {'attribute-a': 'value-a'}
         }, {
           type: element,
           tag: 'button',
           url: 'https://google.it',
-          config: {'attribute-a': 'value-a'}
+          properties: {'attribute-a': 'value-a'}
         }, {
           type: element,
           tag: 'button',
           url: 'https://google.it',
           busDiscriminator: 'button-1',
-          config: {'attribute-a': 'value-a'}
+          properties: {'attribute-a': 'value-a'}
         }]
       }]
     }
