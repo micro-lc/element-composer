@@ -40,9 +40,9 @@ const createRow: CreateFunction = createDiv(rowStyle)
 const createColumn: CreateFunction = createDiv(columnStyle)
 
 const importScript = (configuration: Configuration) => {
-  if (configuration.properties?.src) {
+  if (configuration.url) {
     // @ts-ignore
-    import(/* webpackIgnore: true */ configuration.properties.src)
+    import(/* webpackIgnore: true */ configuration.url)
   }
 }
 
