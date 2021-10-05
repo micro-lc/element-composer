@@ -42,7 +42,6 @@ const createColumn: CreateFunction = createDiv(columnStyle)
 
 const importScript = (configuration: Configuration) => {
   if (configuration.url) {
-    // @ts-ignore
     import(/* webpackIgnore: true */ configuration.url)
   }
 }
