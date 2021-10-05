@@ -15,6 +15,7 @@
  */
 import {Configuration, User} from '@mia-platform/core'
 import {ReplaySubject, Subject} from 'rxjs'
+
 import {applyAttributes, applyProps} from './NodeEnricher'
 
 const rowStyle = 'display: flex; flex-direction: column'
