@@ -2,12 +2,24 @@ const configuration = {
   type: 'row',
   content: [{
     type: 'column',
-    style: 'width: 89%',
+    attributes: {
+      style: 'width: 89%',
+    },
     content: [{
+      type: 'element',
+      tag: 'link',
+      attributes: {
+        href: "https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css",
+        rel: "stylesheet"
+      }
+    }, {
       type: 'element',
       tag: 'button',
       url: 'https://google.it',
-      config: {'attribute-a': 'value-a'}
+      properties: {'attribute-a': 'value-a'},
+      attributes: {
+        class: 'bg-gray-100 rounded-xl p-8'
+      }
     }]
   }]
 }
