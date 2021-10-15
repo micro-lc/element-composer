@@ -35,14 +35,15 @@ const configurationSchema = {
       type: 'string',
       description: 'URL of  the entry point used to register and boot the custom element',
     },
-    config: {
+    properties: {
       type: 'object',
-      description: 'Attribute configuration for the custom element',
+      description: 'Properties configuration for each HTML element',
       additionalProperties: true,
     },
-    style: {
-      type: 'string',
-      description: 'CSS style to inject to the DOM element',
+    attributes: {
+      type: 'object',
+      description: 'Attributes configuration for each HTML element',
+      additionalProperties: true,
     },
     busDiscriminator: {
       type: 'string',
