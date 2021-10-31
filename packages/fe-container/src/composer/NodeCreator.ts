@@ -40,9 +40,20 @@ const createRow: CreateFunction = createDiv(rowStyle)
 
 const createColumn: CreateFunction = createDiv(columnStyle)
 
+const createScript = (url: string) => {
+  const script = document.createElement('script')
+  script.setAttribute('src', url)
+  return script
+}
+
 const importScript = (configuration: Configuration) => {
   if (configuration.url) {
-    import(/* webpackIgnore: true */ configuration.url)
+    const isEsmUrl = configuration.url.endsWith('.esm.js')
+    if (isEsmUrl) {
+      import(/* webpackIgnore: true */ configuration.url)
+    } else {
+      document.head.appendChild(createScript(configuration.url))
+    }
   }
 }
 

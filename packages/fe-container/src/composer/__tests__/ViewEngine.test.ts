@@ -75,6 +75,7 @@ describe('ViewEngine tests', () => {
       '</div>')
     const button = viewBuilt.getElementsByTagName('button')[0]
     expect(button.eventBus).not.toBeUndefined()
+    expect(document.head.innerHTML).toContain('<script src="https://google.it"></script>')
   })
 
   it('create correctly an element inside a styled column inside a row', () => {

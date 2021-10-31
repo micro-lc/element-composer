@@ -1,27 +1,48 @@
 const configuration = {
-  type: 'row',
-  content: [{
-    type: 'column',
-    attributes: {
-      style: 'width: 89%',
+  "type": "row",
+  "attributes": {
+    "style": "display: flex; flex-direction: column;"
+  },
+  "content": [
+    {
+      "type": "element",
+      "tag": "duet-hero",
+      "url": "https://cdn.duetds.com/api/components/4.30.1/lib/duet/duet.js",
+      "attributes": {
+        "heading": "Hero component",
+        "description": "Page made with duet components",
+        "button-label": "Go to another page",
+        "button-url": "/react-app"
+      }
     },
-    content: [{
-      type: 'element',
-      tag: 'link',
-      attributes: {
-        href: "https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css",
-        rel: "stylesheet"
+    {
+      "type": "element",
+      "tag": "duet-textarea",
+      "attributes": {
+        "expand": true,
+        "label": "What do you think about this page?",
+        "placeholder": "Write here your review"
       }
-    }, {
-      type: 'element',
-      tag: 'button',
-      url: 'https://google.it',
-      properties: {'attribute-a': 'value-a'},
-      attributes: {
-        class: 'bg-gray-100 rounded-xl p-8'
-      }
-    }]
-  }]
+    },
+    {
+      "type": "column",
+      "attributes": {
+        "style": "display: flex; flex-direction: row-reverse;"
+      },
+      "content": [
+        {
+          "type": "element",
+          "tag": "duet-button",
+          "attributes": {
+            "variation": "primary"
+          },
+          "properties": {
+            "innerHTML": "Submit"
+          }
+        }
+      ]
+    }
+  ]
 }
 
 module.exports = (request, response) => {
