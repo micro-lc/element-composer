@@ -58,7 +58,7 @@ jobs:
       - name: Prepare
         id: prep
         run: |
-          DOCKER_IMAGE=microlc/microlc-element-composer
+          DOCKER_IMAGE=microlc/micro-lc-element-composer
           VERSION=latest
           if [[ $GITHUB_REF == refs/tags/* ]]; then
             VERSION=${GITHUB_REF#refs/tags/}
