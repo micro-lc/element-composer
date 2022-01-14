@@ -1,5 +1,7 @@
 # Getting Started
 
+For the complete documentation of the plugin, please see [the dedicated documentation page][doc-page].
+
 The project is a monorepo built with [yarn workspaces][workspaces] and [lerna][lerna]. All workspaces can be found under
 the `packages` folder. Each package has its own readme file which contains detailed information about its content.
 
@@ -57,3 +59,4 @@ yarn fe-container test
 [lerna]: https://github.com/lerna/lerna
 [nvm]: https://github.com/creationix/nvm
 [micro-lc]: https://github.com/micro-lc/micro-lc
+[doc-page]: https://microlc.io/documentation/docs/micro-lc/core_plugins#microlc-element-composer
