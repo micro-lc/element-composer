@@ -3,6 +3,11 @@
 The project is a monorepo built with [yarn workspaces][workspaces] and [lerna][lerna]. All workspaces can be found under
 the `packages` folder. Each package has its own readme file which contains detailed information about its content.
 
+## Vertical micro-frontend
+Are you interested in vertical split micro-frontends?
+
+Take also a look at [micro-lc][micro-lc]!
+
 ### Set up the local environment
 
 To develop the service locally you need:
@@ -27,7 +32,7 @@ workspace.
 
 ### Start the project
 
-In order to try `microlc` on your machine with mocked configurations, you have to execute only the `dev` script, using the following command:
+In order to try `micro-lc-element-composer` on your machine with mocked configurations, you have to execute only the `dev` script, using the following command:
 
 ```shell
 yarn dev
@@ -51,3 +56,4 @@ yarn fe-container test
 [workspaces]: https://classic.yarnpkg.com/en/docs/workspaces/
 [lerna]: https://github.com/lerna/lerna
 [nvm]: https://github.com/creationix/nvm
+[micro-lc]: https://github.com/micro-lc/micro-lc
