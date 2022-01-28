@@ -6,8 +6,15 @@ const configuration = {
   "content": [
     {
       "type": "element",
+      "tag": "script",
+      "attributes": {
+        "data-stencil-namespace": "duet"
+      }
+    },
+    {
+      "type": "element",
       "tag": "duet-hero",
-      "url": "https://cdn.duetds.com/api/components/4.30.1/lib/duet/duet.js",
+      "url": "https://cdn.duetds.com/api/components/4.34.2/lib/duet/duet.esm.js",
       "attributes": {
         "heading": "Hero component",
         "description": "Page made with duet components",
