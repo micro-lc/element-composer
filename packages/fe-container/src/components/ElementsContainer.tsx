@@ -22,7 +22,7 @@ const propTypes = {
 type ElementsContainerProps = PropTypes.InferProps<typeof propTypes>
 
 const ElementsContainer: React.FC<ElementsContainerProps> = (props: any = {}) => {
-  const {configurationName = 'microlc-element-composer', currentUser, headers, container, importMap = 'importMap'} = props
+  const {configurationName = 'microlc-element-composer', currentUser, headers, container, importMap} = props
 
   return (
     <>
