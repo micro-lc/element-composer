@@ -66,18 +66,20 @@ const retrieveEventBus = (configuration: Configuration): Subject<any> | undefine
   return eventBus
 }
 
-const createEnrichedElement = (configuration: Configuration, currentUser: Partial<User>, headers: Record<string, string>, defaultEventBus: Subject<any>) => {
+const retrieveRootNode = (documentFragment: DocumentFragment) => () => documentFragment
+
+const createEnrichedElement = (configuration: Configuration, currentUser: Partial<User>, headers: Record<string, string>, defaultEventBus: Subject<any>, documentFragment: DocumentFragment) => {
   // @ts-ignore
   const element = document.createElement(configuration.tag)
   const eventBus = retrieveEventBus(configuration) || defaultEventBus
-  applyProps(element, {...configuration.properties, eventBus, currentUser, headers})
+  applyProps(element, {...configuration.properties, eventBus, currentUser, headers, getRootNode: retrieveRootNode(documentFragment)})
   applyAttributes(element, configuration.attributes)
   return element
 }
 
-const createElement = (configuration: Configuration, currentUser: Partial<User>, headers: Record<string, string>, eventBus: Subject<any>) => {
+const createElement = (configuration: Configuration, currentUser: Partial<User>, headers: Record<string, string>, eventBus: Subject<any>, documentFragment: DocumentFragment) => {
   importScript(configuration)
-  return createEnrichedElement(configuration, currentUser, headers, eventBus)
+  return createEnrichedElement(configuration, currentUser, headers, eventBus, documentFragment)
 }
 
 const strategies = {
@@ -86,9 +88,9 @@ const strategies = {
   element: createElement
 }
 
-const createNode = (configuration: Configuration, currentUser: Partial<User>, headers: Record<string, string>, eventBus: Subject<any>) => {
+const createNode = (configuration: Configuration, currentUser: Partial<User>, headers: Record<string, string>, eventBus: Subject<any>, documentFragment: DocumentFragment) => {
   const strategy = strategies[configuration.type]
-  return strategy(configuration, currentUser, headers, eventBus)
+  return strategy(configuration, currentUser, headers, eventBus, documentFragment)
 }
 
 export default createNode
