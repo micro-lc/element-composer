@@ -15,6 +15,8 @@
  */
 import viewEngine from '../ViewEngine'
 
+const DOCUMENT_FRAGMENT_TYPE = 11 // https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType
+
 describe('ViewEngine tests', () => {
   it('create correctly a row', () => {
     const type: 'row' = 'row'
@@ -263,5 +265,20 @@ describe('ViewEngine tests supporting `headers` prop', () => {
     expect(div.currentUser).toMatchObject({})
     // @ts-ignore
     expect(div.headers).toMatchObject(headers)
+  })
+})
+
+describe('ViewEngine correctly override getRootNode function', () => {
+  it('creates an element with no `currentUser` prop', () => {
+    const element: 'element' = 'element'
+    const rowConfig = {
+      type: element,
+      tag: 'div'
+    }
+    const viewBuilt = viewEngine([rowConfig])
+    const div = viewBuilt.getElementsByTagName('div')[0]
+    const rootNode = div.getRootNode()
+    expect(rootNode).not.toBe(document)
+    expect(rootNode?.nodeType).toBe(DOCUMENT_FRAGMENT_TYPE)
   })
 })

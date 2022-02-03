@@ -21,14 +21,27 @@ const propTypes = {
 
 type ComposerProps = PropTypes.InferProps<typeof propTypes>
 
+const createDocumentFragment = (rootComponent: React.MutableRefObject<any>) => {
+  const documentFragment = new DocumentFragment()
+  const oldInsertBefore = documentFragment.insertBefore
+  // @ts-ignore
+  documentFragment.insertBefore = function (name, constructor, options) {
+    const oldInsertBeforeResult = Reflect.apply(oldInsertBefore, documentFragment, arguments)
+    rootComponent.current.parentElement.appendChild(documentFragment)
+    return oldInsertBeforeResult
+  }
+  return documentFragment
+}
+
 const Composer: React.FC<ComposerProps> = ({configurationName, currentUser, headers}) => {
   const configuration = useConfiguration(configurationName)
   const rootComponent = useRef<any>()
 
   useEffect(() => {
     if (configuration) {
+      const documentFragment = createDocumentFragment(rootComponent)
       // @ts-ignore
-      viewEngine([configuration], currentUser, headers, rootComponent.current.parentElement)
+      viewEngine([configuration], currentUser, headers, rootComponent.current.parentElement, documentFragment)
     }
   }, [configuration, currentUser, headers])
 
