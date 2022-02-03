@@ -26,8 +26,6 @@ const createDocumentFragment = (rootComponent: React.MutableRefObject<any>) => {
   const oldInsertBefore = documentFragment.insertBefore
   // @ts-ignore
   documentFragment.insertBefore = function (name, constructor, options) {
-    // eslint-disable-next-line
-    console.log(arguments)
     const oldInsertBeforeResult = Reflect.apply(oldInsertBefore, documentFragment, arguments)
     rootComponent.current.parentElement.appendChild(documentFragment)
     return oldInsertBeforeResult
