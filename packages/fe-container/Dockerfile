@@ -1,4 +1,4 @@
-FROM nginx:1.21.0-alpine as build
+FROM nginx:1.21.6-alpine as build
 
 LABEL name="microlc-element-composer" \
       description="The Mia-Platform micro fontend solution" \
