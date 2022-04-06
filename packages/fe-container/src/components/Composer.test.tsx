@@ -17,7 +17,7 @@ describe('Composer tests', () => {
   })
 
   it('correctly show configuration', async () => {
-    fetchMock.getOnce('/api/v1/microlc/configuration/test', {
+    fetchMock.getOnce('/api/v1/microlc/configuration/test.json', {
       type: 'row'
     })
     const composer = render(<Composer configurationName={'test'}/>)
@@ -26,7 +26,7 @@ describe('Composer tests', () => {
 
   it('correctly apply document fragment', async () => {
     const webComponentTag = 'my-web-component'
-    fetchMock.getOnce('/api/v1/microlc/configuration/test', {
+    fetchMock.getOnce('/api/v1/microlc/configuration/test.json', {
       type: 'element',
       tag: webComponentTag
     })

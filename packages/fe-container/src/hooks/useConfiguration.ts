@@ -5,7 +5,7 @@ const useConfiguration = (configurationName: string) => {
   const [configuration, setConfiguration] = useState<Configuration>()
 
   useEffect(() => {
-    fetch(`./api/v1/microlc/configuration/${configurationName}`)
+    fetch(`./api/v1/microlc/configuration/${configurationName}.json`)
       .then(response => response.json())
       .then(setConfiguration)
   }, [configurationName])
