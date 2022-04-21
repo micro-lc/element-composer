@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Now it specify that the configuration is in JSON format.
 - This version MUST be used with micro-lc 0.8.0+
 
+### Updated
+
+- dependencies
+
 ## 0.5.0
 
 ### Added

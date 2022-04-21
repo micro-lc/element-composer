@@ -1,6 +1,6 @@
 {
   "name": "@mia-platform/core",
-  "version": "0.1.0",
+  "version": "0.8.0",
   "module": "dist/core.esm.js",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
