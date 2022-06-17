@@ -25,7 +25,7 @@
     "@babel/preset-env": "^7.14.8",
     "@babel/preset-typescript": "^7.14.5",
     "@babel/register": "^7.14.5",
-    "@staticdeploy/mock-server": "^2.0.0",
+    "@staticdeploy/mock-server": "^3.0.0",
     "coveralls": "^3.1.1",
     "husky": "^7.0.1",
     "lerna": "^4.0.0",
