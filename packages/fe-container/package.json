@@ -53,7 +53,7 @@
     "@testing-library/react": "^12.0.0",
     "@types/classnames": "^2.2.11",
     "@types/fetch-mock": "^7.3.5",
-    "@types/jest": "^27.0.1",
+    "@types/jest": "^28.1.5",
     "@types/node": "^17.0.8",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
