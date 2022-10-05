@@ -1,0 +1,82 @@
+{
+  "type": "row",
+  "attributes": {
+    "style": "display: flex; flex-direction: column;"
+  },
+  "content": [
+    {
+      "type": "column",
+      "content": [
+        {
+          "type": "element",
+          "tag": "script",
+          "attributes": {
+            "data-stencil-namespace": "duet"
+          }
+        },
+        {
+          "type": "element",
+          "tag": "duet-layout",
+          "url": "https://cdn.duetds.com/api/components/4.34.2/lib/duet/duet.esm.js",
+          "attributes": {
+            "margin": "none"
+          },
+          "content": [
+            {
+              "type": "element",
+              "tag": "div",
+              "properties": {
+                "slot": "main"
+              },
+              "content": [
+                {
+                  "type": "element",
+                  "tag": "duet-card",
+                  "attributes": {
+                    "heading": "Main"
+                  },
+                  "properties": {
+                    "innerHTML": "Main content"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "element",
+              "tag": "div",
+              "properties": {
+                "slot": "sidebar"
+              },
+              "content": [
+                {
+                  "type": "element",
+                  "tag": "duet-card",
+                  "attributes": {
+                    "heading": "Sidebar"
+                  },
+                  "properties": {
+                    "innerHTML": "Sidebar"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "tag": "duet-button",
+      "attributes": {
+        "variation": "primary",
+        "icon": "action-arrow-left",
+        "url": "/"
+      },
+      "properties": {
+        "innerHTML": "Return to home"
+      }
+    }
+    
+    
+  ]
+}
