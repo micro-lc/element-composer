@@ -1,6 +1,6 @@
 {
   "name": "@mia-platform/element-composer-website",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "homepage": "./",
   "dependencies": {
@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@babel/register": "^7.13.8",
-    "@mia-platform/core": "0.8.0",
+    "@mia-platform/core": "1.0.0",
     "@rescripts/cli": "^0.0.16",
     "@staticdeploy/mock-server": "^3.0.0",
     "@testing-library/jest-dom": "^5.11.9",

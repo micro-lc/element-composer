@@ -1,6 +1,6 @@
 {
   "name": "microlc-element-composer",
-  "version": "0.8.0",
+  "version": "1.0.0",
   "description": "Microlc plugin to compose pages out of Web Components",
   "private": true,
   "workspaces": [
