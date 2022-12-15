@@ -1,8 +1,16 @@
-# Getting Started
+# Element composer has been merged in [micro-lc](https://github.com/micro-lc/micro-lc)!
 
-[![Node.js fe-container CI](https://github.com/micro-lc/micro-lc-element-composer/actions/workflows/fe-container.yml/badge.svg)](https://github.com/micro-lc/micro-lc-element-composer/actions/workflows/fe-container.yml)
-[![Coverage Status][coverall-svg]][coverall-io]
-[![Mia-Platform](https://img.shields.io/badge/Supported%20by-Mia--Platform-green?style=for-the-badge&link=https://mia-platform.eu/&color=DE0D92&labelColor=214147)](https://mia-platform.eu/?utm_source=referral&utm_medium=github&utm_campaign=micro-lc)
+From version 2, the composition functionality is dicrectly shipped by [micro-lc](https://github.com/micro-lc/micro-lc). Refer to the [official documentation](https://micro-lc.io/) for more details.
+
+---
+
+<h1 align="center">
+  Element composer
+</h1>
+
+<p align="center">
+    <a href="https://mia-platform.eu/?utm_source=referral&utm_medium=github&utm_campaign=micro-lc"><img src="https://img.shields.io/badge/Supported%20by-Mia--Platform-green?style=for-the-badge&link=https://mia-platform.eu/&color=DE0D92&labelColor=214147" alt="Mia-Platform" /></a>
+</p>
 
 For the complete documentation of the plugin, please see [the dedicated documentation page][doc-page].
 
